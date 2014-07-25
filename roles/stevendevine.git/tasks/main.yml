@@ -1,0 +1,13 @@
+---
+- name: install git
+  apt: "pkg={{item}} state=installed"
+  with_items: 
+    - git
+    - gitk  
+
+- name: git global config
+  shell: "git config --global {{item}}"
+  with_items:
+    - 'user.email "stevenmichaeldevine@gmail.com"'
+    - 'user.name "Steven Devine"'
+  changed_when: False

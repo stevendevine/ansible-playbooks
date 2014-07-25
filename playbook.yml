@@ -1,0 +1,29 @@
+---
+- name: bootstrap for lubuntu sandbox
+  hosts: local
+  sudo: True
+
+  vars:
+    - user: "sd"
+
+  pre_tasks:
+    - name: apt-get update
+      apt: update_cache=yes cache_valid_time=86400
+    - name: apt-get autoremove
+      register: autoremove
+      shell: "yes | apt-get autoremove | wc -l"
+      changed_when: autoremove.stdout > '4'
+
+  roles:
+    - stevendevine.vim 
+    - stevendevine.git
+
+  tasks:
+    - name: install commons
+      apt: "pkg={{ item }} state=installed"
+      with_items: 
+        - htop
+        - virtualbox
+        - vagrant
+        - chromium-browser
+        - curl

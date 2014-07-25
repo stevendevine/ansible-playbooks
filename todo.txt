@@ -1,17 +1,9 @@
-git
-gitk
-vim
-ansible
 curl
-chromium
-virtualbox
-vagrant
 sublime text 2
 
 ruby
 rubymine
 rvm
 
-vimrc
 bashrc
 git settings

@@ -1,3 +1,6 @@
 ---
 - name: Install vim
   apt: pkg=vim state=installed
+
+- name: write vimrc
+  copy: src=vimrc dest=/home/{{ user }}/.vimrc owner={{ user }} group={{ user }} mode=0644
