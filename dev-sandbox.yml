@@ -1,0 +1,7 @@
+---
+- name: initial basic setup for dev sandbox
+  hosts: local
+  sudo: True
+
+  roles:
+    - stevendevine.vim
