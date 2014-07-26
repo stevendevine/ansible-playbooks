@@ -1,0 +1,10 @@
+---
+- name: install commons
+  apt: "pkg={{ item }} state=installed"
+  with_items:
+    - htop
+    - virtualbox
+    - vagrant
+    - chromium-browser
+    - curl
+    - meld

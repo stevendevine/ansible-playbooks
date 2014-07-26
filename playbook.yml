@@ -17,13 +17,6 @@
   roles:
     - stevendevine.vim 
     - stevendevine.git
+    - stevendevine.apps
+    - stevendevine.lxde
 
-  tasks:
-    - name: install commons
-      apt: "pkg={{ item }} state=installed"
-      with_items: 
-        - htop
-        - virtualbox
-        - vagrant
-        - chromium-browser
-        - curl

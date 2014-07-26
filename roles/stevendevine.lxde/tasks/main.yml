@@ -1,0 +1,20 @@
+---
+- name: LXTerminal settings
+  copy: src=lxterminal.conf dest=/home/{{ user }}/.config/lxterminal/lxterminal.conf owner={{ user }} group={{ user }} mode=0644
+
+- name: LXPanel settings
+  copy: src=panel dest=/home/{{ user }}/.config/lxpanel/Lubuntu/panels/panel owner={{ user }} group={{ user }} mode=0644
+  register: lxpanel
+
+- name: Restart LXPanel
+  shell: "lxpanelctl restart"
+  when: lxpanel.changed
+
+- name: Openbox config
+  copy: src=lubuntu-rc.xml dest=/home/{{ user }}/.config/openbox/lubuntu-rc.xml owner={{ user }} group={{ user }} mode=0644
+  register: openbox
+
+- name: Restart Openbox
+  shell: "openbox --restart"
+  when: openbox.changed
+
