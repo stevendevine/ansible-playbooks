@@ -1,5 +1,10 @@
-colo desert
-set tabstop=2
+set ts=2
 set expandtab
+colo desert
 syntax on
-
+set autoindent
+set smartindent
+set hlsearch
+set showmatch
+set number
+set relativenumber
