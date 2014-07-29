@@ -1,4 +1,6 @@
 sublime text 2
+add lineinfile support to scripts
+
 
 ruby
 rubymine
