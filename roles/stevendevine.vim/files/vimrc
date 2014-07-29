@@ -4,7 +4,6 @@ colo desert
 syntax on
 set autoindent
 set smartindent
-set hlsearch
 set showmatch
 set number
 set relativenumber

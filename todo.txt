@@ -1,4 +1,3 @@
-curl
 sublime text 2
 
 ruby
@@ -6,4 +5,3 @@ rubymine
 rvm
 
 bashrc
-git settings

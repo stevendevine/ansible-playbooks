@@ -1,6 +1,13 @@
 ---
 - name: Install vim
   apt: pkg=vim state=installed
+  register: vim
 
 - name: write vimrc
   copy: src=vimrc dest=/home/{{ user }}/.vimrc owner={{ user }} group={{ user }} mode=0644
+
+- name: set vim as editor
+  shell: >
+    echo 'export EDITOR=/usr/bin/vim' >> /home/{{user}}/.profile \
+    echo 'export VISUAL=/usr/vbin/vim' >> /home/{{user}}/.profile
+  when: vim.changed
