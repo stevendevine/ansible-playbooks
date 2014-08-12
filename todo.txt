@@ -1,9 +1,9 @@
 sublime text 2
-add lineinfile support to scripts
 
+rubymine plugins
 
-ruby
-rubymine
-rvm
+licenses
 
 bashrc
+
+

@@ -9,3 +9,7 @@
 
 - name: Update RubyMine Permissions
   file: path=/opt/RubyMine-6.3.3 recurse=yes group={{user}} owner={{user}}
+
+- name: Create RubyMine link
+  file: src=/opt/RubyMine-6.3.3/bin/rubymine.sh dest=/usr/local/bin/rubymine state=link
+  
