@@ -1,4 +1,7 @@
 sublime text 2
+vim plugins
+docker
+astyle
 
 ruby
 rubymine
