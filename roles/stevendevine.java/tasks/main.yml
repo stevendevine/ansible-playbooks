@@ -1,0 +1,3 @@
+---
+- name: Install OpenJDK Java
+  apt: pkg=java-common state=installed

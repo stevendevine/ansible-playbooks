@@ -3,6 +3,4 @@
   apt: "pkg={{ item }} state=installed"
   with_items:
     - htop
-    - virtualbox
-    - vagrant
     - curl

@@ -1,10 +1,13 @@
 sublime text 2
-vim plugins
+add user to rvm group for rvm to work
+
 docker
 astyle
 
-ruby
-rubymine
-rvm
+rubymine plugins
+
+licenses
 
 bashrc
+
+
