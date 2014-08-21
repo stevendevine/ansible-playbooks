@@ -2,6 +2,9 @@
 - name: LXTerminal settings
   copy: src=lxterminal.conf dest=/home/{{ user }}/.config/lxterminal/lxterminal.conf owner={{ user }} group={{ user }} mode=0644
 
+- name: LXPanel Folder
+  file: path=/home/{{ user }}/.config/lxpanel/Lubuntu/panels state=directory owner={{ user }} group={{ user }} 
+
 - name: LXPanel settings
   copy: src=panel dest=/home/{{ user }}/.config/lxpanel/Lubuntu/panels/panel owner={{ user }} group={{ user }} mode=0644
   register: lxpanel
