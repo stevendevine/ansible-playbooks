@@ -147,7 +147,7 @@ Plugin {
 Plugin {
     type = dclock
     Config {
-        ClockFmt=%l:%m
+        ClockFmt=%l:%M
         TooltipFmt=%A %x
         BoldFont=0
         IconOnly=0
