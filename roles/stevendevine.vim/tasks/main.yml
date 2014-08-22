@@ -7,10 +7,10 @@
   copy: src=vimrc dest=/home/{{ user }}/.vimrc owner={{ user }} group={{ user }} mode=0644
 
 - name: set vim as editor
-  shell: >
-    echo 'export EDITOR=/usr/bin/vim' >> /home/{{user}}/.profile \
-    echo 'export VISUAL=/usr/bin/vim' >> /home/{{user}}/.profile
-  when: vim.changed
+  lineinfile: dest=/home/{{user}}/.profile line="{{item}}"
+  with_items:
+    - "export EDITOR=/usr/bin/vim"
+    - "export VISUAL=/usr/bin/vim"
 
 - name: Install Pathogen
   git: repo=https://github.com/tpope/vim-pathogen depth=1 dest=/home/{{user}}/.vim/autoload
