@@ -1,4 +1,3 @@
-ansible update
 docker
 rubymine plugins
 licenses

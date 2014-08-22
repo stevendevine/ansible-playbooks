@@ -1,12 +1,12 @@
 ---
-- name: install git
+- name: Install git
   apt: "pkg={{item}} state=installed"
   with_items: 
     - git
     - gitk  
     - kdiff3-qt
 
-- name: git global config
+- name: Git global config
   sudo_user: "{{user}}"
   shell: "git config --global {{item}}"
   with_items:
@@ -17,3 +17,9 @@
     - 'difftool.prompt false'
     - 'alias.d difftool'
   changed_when: False
+
+- name: Copy git bashrc
+  copy: src=./.bash-git-rc dest=/home/{{user}}/.bash-git-rc
+
+- name: Source git bashrc
+  lineinfile: dest=/home/{{user}}/.bashrc line="source ~/.bash-git-rc" state=present
