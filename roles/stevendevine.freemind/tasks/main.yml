@@ -1,3 +1,6 @@
 ---
 - name: Install FreeMind
   apt: pkg=freemind state=installed
+
+- name: Configure FreeMind
+  copy: src=./auto.properties dest=/home/{{user}}/.freemind/auto.properties
