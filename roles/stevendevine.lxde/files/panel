@@ -55,6 +55,9 @@ Plugin {
             id=/usr/share/applications/firefox.desktop
         }
         Button {
+            id=/usr/share/applications/sublime-text-2.desktop
+        }
+        Button {
             id=/usr/share/applications/lxterminal.desktop
         }
         Button {
