@@ -61,6 +61,9 @@ Plugin {
             id=/usr/share/applications/hexchat.desktop
         }
         Button {
+            id=/usr/share/applications/freemind.desktop
+        }
+        Button {
             id=/usr/share/applications/leafpad.desktop
         }
     }
