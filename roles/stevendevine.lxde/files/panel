@@ -58,6 +58,9 @@ Plugin {
             id=/usr/share/applications/lxterminal.desktop
         }
         Button {
+            id=/usr/share/applications/hexchat.desktop
+        }
+        Button {
             id=/usr/share/applications/leafpad.desktop
         }
     }

@@ -1,6 +1,12 @@
 ---
+- name: Copy RVM script
+  copy: src=./rvm.sh dest=/tmp/rvm.sh
+
 - name: Install Ruby and Multi-user RVM
-  shell: "curl -sSL https://get.rvm.io | bash -s stable --ruby"
+  shell: "cat /tmp/rvm.sh | bash -s stable --ruby"
 
 - name: Bash RVM setup
   lineinfile: dest='/home/{{user}}/.bashrc' line='source /etc/profile.d/rvm.sh'
+
+- name: Add user to rvm group
+  shell: "usermod -a -G rvm {{user}}"

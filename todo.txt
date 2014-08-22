@@ -1,5 +1,4 @@
 sublime text 2
-hexchat
 add user to rvm group for rvm to work
 freemind
 make git a dependency of vim
