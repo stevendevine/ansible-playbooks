@@ -1,0 +1,6 @@
+---
+- name: "Sublime Text 2 Ubuntu PPA"
+  apt_repository: repo=ppa:webupd8team/sublime-text-2 state=present update_cache=yes
+
+- name: "Install Sublime Text 2"
+  apt: pkg=sublime-text state=installed

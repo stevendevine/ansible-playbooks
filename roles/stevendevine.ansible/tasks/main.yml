@@ -1,0 +1,11 @@
+---
+# Credit to Richard Kent Jordan for this task / idea!!
+- name: Ansible preconditions
+  apt: "pkg=software-properties-common state=latest"
+
+- name: Add Ansible PPA
+  apt_repository: "repo='ppa:ansible/ansible' update_cache=yes"
+
+- name: Install Ansible
+  apt: "pkg=ansible state=latest"
+

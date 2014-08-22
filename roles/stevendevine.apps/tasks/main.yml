@@ -5,3 +5,5 @@
     - htop
     - curl
     - hexchat
+    - build-essential
+    - astyle

@@ -1,11 +1,5 @@
-sublime text 2
-add user to rvm group for rvm to work
-freemind
-make git a dependency of vim
-build-essential
 ansible update
 docker
-astyle
 rubymine plugins
 licenses
 bashrc
