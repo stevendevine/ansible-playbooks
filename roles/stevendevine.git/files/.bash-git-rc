@@ -6,3 +6,4 @@ function git_state {
 	git show --stat --oneline HEAD &2>/dev/null| tail -n 1 | tr '\n' " "
 }
 PS1="\$(last_dirs)\[\033[01;31m\]\$(__git_ps1)\[\033[00m\] > "
+alias gk="gitk --all"

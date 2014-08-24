@@ -1,4 +1,3 @@
 docker
 rubymine plugins
 licenses
-bashrc

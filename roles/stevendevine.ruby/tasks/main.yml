@@ -4,9 +4,12 @@
 
 - name: Install Ruby and Multi-user RVM
   shell: "cat /tmp/rvm.sh | bash -s stable --ruby"
+  register: rvm_install
+  changed_when: rvm_install.stderr.find("Already installed") == -1 
 
 - name: Bash RVM setup
   lineinfile: dest='/home/{{user}}/.bashrc' line='source /etc/profile.d/rvm.sh'
 
 - name: Add user to rvm group
   shell: "usermod -a -G rvm {{user}}"
+  changed_when: false

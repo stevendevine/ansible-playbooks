@@ -251,6 +251,11 @@
       <action name="ToggleShowDesktop"/>
     </keybind>
     <!-- xx Keybindings for windows -->
+    <keybind key="C-A-W">
+      <action name="Execute">
+        <command>firefox</command>
+      </action>
+    </keybind>
 
 
 	<keybind key="C-S-Up">
