@@ -20,6 +20,7 @@
     - stevendevine.apps
     - stevendevine.java
     - stevendevine.ruby
+    - stevendevine.php
     - stevendevine.freemind
     - stevendevine.sublimetext2
     # keep lxde last, it refers to .desktop files created by previous roles
