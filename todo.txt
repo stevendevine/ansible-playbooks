@@ -1,3 +1,6 @@
 docker
 rubymine plugins
-licenses
+sublime text 2 licenses
+sublime text 2 config
+postgres
+nginx
