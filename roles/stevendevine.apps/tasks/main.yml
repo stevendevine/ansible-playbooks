@@ -8,6 +8,7 @@
     - build-essential
     - astyle
     - inotify-tools
+    - errno
 
 - name: Configure inotify-tools
   shell: "sysctl -w fs.inotify.max_user_watches=100000"

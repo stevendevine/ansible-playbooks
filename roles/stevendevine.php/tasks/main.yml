@@ -16,3 +16,4 @@
 
 - name: "Install Composer"
   copy: src=/tmp/composer.phar dest=/usr/local/bin/composer mode=0550 owner="{{user}}" group="{{user}}"
+  when: composer.stat.exists == false
