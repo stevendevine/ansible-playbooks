@@ -1,3 +1,4 @@
+call pathogen#infect()
 set ts=2
 set expandtab
 colo desert
