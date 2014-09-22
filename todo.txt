@@ -1,4 +1,5 @@
 docker
+stop lightlocker from running
 rubymine plugins
 sublime text 2 licenses
 sublime text 2 config
