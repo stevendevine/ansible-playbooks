@@ -1,0 +1,3 @@
+---
+- name: Install Elixir
+  apt: pkg=elixir state=installed

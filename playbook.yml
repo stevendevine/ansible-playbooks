@@ -18,7 +18,8 @@
     - stevendevine.vim 
     - stevendevine.git
     - stevendevine.apps
-  #  - stevendevine.java
+    - stevendevine.java
+    - stevendevine.elixir
     - stevendevine.ruby
     - stevendevine.php
     - stevendevine.freemind
