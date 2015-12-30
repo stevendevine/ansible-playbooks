@@ -11,14 +11,14 @@
       apt: update_cache=yes cache_valid_time=86400
     - name: apt-get autoremove
       register: autoremove
-      shell: "yes | apt-get autoremove | wc -l"
+      shell: "apt-get -y autoremove | wc -l"
       changed_when: autoremove.stdout > '4'
 
   roles:
     - stevendevine.vim 
     - stevendevine.git
     - stevendevine.apps
-    - stevendevine.java
+  #  - stevendevine.java
     - stevendevine.ruby
     - stevendevine.php
     - stevendevine.freemind
