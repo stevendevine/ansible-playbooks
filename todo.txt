@@ -1,4 +1,5 @@
 generate ssh key
+bfg for git repos
 elixir
 nodejs
 docker
