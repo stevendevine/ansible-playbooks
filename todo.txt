@@ -1,4 +1,5 @@
 generate ssh key
+traceroute
 bfg for git repos
 elixir
 nodejs
