@@ -16,13 +16,13 @@
     - lineinfile:
             path: /etc/sudoers
             state: present
-            regexp: '^%ADMIN ALL='
-            line: '%ADMIN ALL=(ALL) NOPASSWD: ALL'
+            regexp: '^%admin ALL='
+            line: '%admin ALL=(ALL) NOPASSWD: ALL'
             validate: '/usr/sbin/visudo -cf %s'
     - name: add user to admin group
       user:
               name: '{{ user }}'
-              groups: admin
+              groups: adm
               append: yes
 
 
