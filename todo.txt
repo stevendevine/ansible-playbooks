@@ -2,3 +2,4 @@ elixir
 nodejs
 docker
 jetbrains toolbox
+remove sudo password requirement from local user

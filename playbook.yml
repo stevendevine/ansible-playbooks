@@ -13,5 +13,18 @@
       register: autoremove
       shell: "apt-get -y autoremove | wc -l"
       changed_when: autoremove.stdout > '4'
+    - lineinfile:
+            path: /etc/sudoers
+            state: present
+            regexp: '^%ADMIN ALL='
+            line: '%ADMIN ALL=(ALL) NOPASSWD: ALL'
+            validate: '/usr/sbin/visudo -cf %s'
+    - name: add user to admin group
+      user:
+              name: '{{ user }}'
+              groups: admin
+              append: yes
+
 
   roles:
+          - geerlingguy.docker
