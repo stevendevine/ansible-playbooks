@@ -1,30 +1,52 @@
 ---
 - name: bootstrap for lubuntu sandbox
   hosts: local
-  sudo: True
+  become: True
 
   vars:
     - user: "sd"
+    - apt_packages:
+      - curl
+      - build-essential
+      - errno
+      - gitk
 
   pre_tasks:
     - name: apt-get update
-      apt: update_cache=yes cache_valid_time=86400
-    - name: apt-get autoremove
-      register: autoremove
-      shell: "apt-get -y autoremove | wc -l"
-      changed_when: autoremove.stdout > '4'
-    - lineinfile:
-            path: /etc/sudoers
-            state: present
-            regexp: '^%admin ALL='
-            line: '%admin ALL=(ALL) NOPASSWD: ALL'
-            validate: '/usr/sbin/visudo -cf %s'
+      apt:
+        autoremove: true
+        update_cache: true
+        cache_valid_time: 3600
+    - name: Upgrade all packages to the latest version
+      apt:
+        upgrade: dist
+    - name: install basics
+      apt:
+        name: "{{ apt_packages }}"
+    - name: admin no sudo password
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%admin ALL='
+        line: '%admin ALL=(ALL) NOPASSWD: ALL'
+        validate: '/usr/sbin/visudo -cf %s'
     - name: add user to admin group
       user:
-              name: '{{ user }}'
-              groups: adm
-              append: yes
+        name: '{{ user }}'
+        groups: adm
+        append: yes
+    - name: Git global config
+      shell: "git config --global {{item}}"
+      with_items:
+        - 'user.email "stevenmichaeldevine@gmail.com"'
+        - 'user.name "Steven Devine"'
+        - 'push.default simple'
+    - name: copy bash ps1
+      copy: src=./.bash-git-ps1 dest=/home/{{user}}/.bash-git-ps1
+
+    - name: bash ps1
+      lineinfile: dest=/home/{{user}}/.bashrc line="source ~/.bash-git-ps1" state=present
 
 
   roles:
-          - geerlingguy.docker
+    - geerlingguy.docker
