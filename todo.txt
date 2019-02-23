@@ -1,12 +1,4 @@
-generate ssh key
-traceroute
-bfg for git repos
 elixir
 nodejs
 docker
-stop lightlocker from running
-rubymine plugins
-sublime text 2 licenses
-sublime text 2 config
-postgres
-nginx
+jetbrains toolbox

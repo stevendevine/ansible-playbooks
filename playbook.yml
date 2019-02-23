@@ -15,16 +15,3 @@
       changed_when: autoremove.stdout > '4'
 
   roles:
-    - stevendevine.vim 
-    - stevendevine.git
-    - stevendevine.apps
-    - stevendevine.java
-    - stevendevine.elixir
-    - stevendevine.ruby
-    - stevendevine.php
-    - stevendevine.freemind
-    - stevendevine.sublimetext2
-    # keep lxde last, it refers to .desktop files created by previous roles
-    # there is probably a better way to do this
-    - stevendevine.lxde
-#    - stevendevine.rubymine
