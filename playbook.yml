@@ -5,18 +5,22 @@
 
   vars:
     - user: "sd"
+    - git_user_email: "stevenmichaeldevine@gmail.com"
+    - git_user_name: "Steven Devine"
     - apt_packages:
       - curl
       - build-essential
       - errno
       - gitk
+    - php_enable_webserver: false
+    - php_default_version_debian: "7.2"
 
   pre_tasks:
     - name: apt-get update
       apt:
         autoremove: true
         update_cache: true
-        cache_valid_time: 3600
+        cache_valid_time: 86400
     - name: Upgrade all packages to the latest version
       apt:
         upgrade: dist
@@ -38,15 +42,16 @@
     - name: Git global config
       shell: "git config --global {{item}}"
       with_items:
-        - 'user.email "stevenmichaeldevine@gmail.com"'
-        - 'user.name "Steven Devine"'
+        - 'user.email {{git_user_email}}'
+        - 'user.name {{git_user_name}}'
         - 'push.default simple'
     - name: copy bash ps1
       copy: src=./.bash-git-ps1 dest=/home/{{user}}/.bash-git-ps1
-
     - name: bash ps1
       lineinfile: dest=/home/{{user}}/.bashrc line="source ~/.bash-git-ps1" state=present
 
-
   roles:
     - geerlingguy.docker
+    - geerlingguy.php
+    - geerlingguy.php-xdebug
+    - geerlingguy.composer

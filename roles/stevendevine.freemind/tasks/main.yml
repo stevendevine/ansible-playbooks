@@ -1,9 +1,0 @@
----
-- name: Install FreeMind
-  apt: pkg=freemind state=installed
-
-- name: Create FreeMind config folder
-  file: path=/home/{{user}}/.freemind state=directory 
-
-- name: Configure FreeMind
-  copy: src=./auto.properties dest=/home/{{user}}/.freemind/auto.properties

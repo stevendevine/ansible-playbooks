@@ -1,1 +1,4 @@
-- src: geerlingguy.docker
+- geerlingguy.docker
+- geerlingguy.php
+- geerlingguy.php-xdebug
+- geerlingguy.composer

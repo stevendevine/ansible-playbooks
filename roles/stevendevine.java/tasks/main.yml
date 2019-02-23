@@ -1,7 +1,0 @@
----
-- name: Install Java 
-  apt: pkg={{item}} state=latest
-  with_items:
-    - java-common
-    - openjdk-7-jdk
-#    - eclipse
