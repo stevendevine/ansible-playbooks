@@ -5,6 +5,9 @@
 
   vars:
     - user: "sd"
+    - user_groups:
+        - adm
+        - docker
     - git_user_email: "stevenmichaeldevine@gmail.com"
     - git_user_name: "Steven Devine"
     - apt_packages:
@@ -12,8 +15,12 @@
       - build-essential
       - errno
       - gitk
+      - vagrant
+      - openjdk-8-jre
     - php_enable_webserver: false
     - php_default_version_debian: "7.2"
+    - php_packages:
+        - php7.2-zip
 
   pre_tasks:
     - name: apt-get update
@@ -31,13 +38,12 @@
       lineinfile:
         path: /etc/sudoers
         state: present
-        regexp: '^%admin ALL='
-        line: '%admin ALL=(ALL) NOPASSWD: ALL'
+        line: '%adm ALL=(ALL) NOPASSWD: ALL'
         validate: '/usr/sbin/visudo -cf %s'
-    - name: add user to admin group
+    - name: add user to groups
       user:
         name: '{{ user }}'
-        groups: adm
+        groups: "{{user_groups}}"
         append: yes
     - name: Git global config
       shell: "git config --global {{item}}"
@@ -45,13 +51,18 @@
         - 'user.email {{git_user_email}}'
         - 'user.name {{git_user_name}}'
         - 'push.default simple'
-    - name: copy bash ps1
+    - name: bash ps1
       copy: src=./.bash-git-ps1 dest=/home/{{user}}/.bash-git-ps1
     - name: bash ps1
       lineinfile: dest=/home/{{user}}/.bashrc line="source ~/.bash-git-ps1" state=present
+    - name: bash aliases
+      copy: src=./.bash-aliases dest=/home/{{user}}/.bash-aliases
+    - name: bash ps1
+      lineinfile: dest=/home/{{user}}/.bashrc line="source ~/.bash-aliases" state=present
+    - name: vimrc
+      copy: src=./.vimrc dest=/home/{{user}}/.vimrc
 
   roles:
-    - geerlingguy.docker
-    - geerlingguy.php
-    - geerlingguy.php-xdebug
-    - geerlingguy.composer
+          #- geerlingguy.docker
+          #- geerlingguy.php
+          #- geerlingguy.php-xdebug
