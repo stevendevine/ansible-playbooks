@@ -1,3 +1,0 @@
-elixir
-nodejs
-jetbrains toolbox

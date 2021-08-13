@@ -1,0 +1,6 @@
+alias composer="docker run --rm -v \$(pwd):/app composer"
+alias php="docker-compose exec app php"
+alias yarn="docker run --rm -v $(pwd):/app -w /app node yarn"
+alias htop="sudo htop"
+alias src="source ~/.bashrc"
+alias update="~/ansible-playbooks/bin/run.sh"

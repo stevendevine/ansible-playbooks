@@ -1,10 +1,9 @@
 ---
 - name: bootstrap for lubuntu sandbox
-  hosts: local
-  become: True
+  hosts: localhost
+  gather_facts: yes
 
   vars:
-    - user: "sd"
     - user_groups:
         - adm
         - docker
@@ -16,53 +15,49 @@
       - errno
       - gitk
       - vagrant
-      - openjdk-8-jre
-    - php_enable_webserver: false
-    - php_default_version_debian: "7.2"
-    - php_packages:
-        - php7.2-zip
+      - docker.io
+    - jetbrains_toolbox_version: latest
 
   pre_tasks:
     - name: apt-get update
+      become: yes
       apt:
         autoremove: true
         update_cache: true
         cache_valid_time: 86400
     - name: Upgrade all packages to the latest version
+      become: yes
       apt:
         upgrade: dist
     - name: install basics
+      become: yes
       apt:
-        name: "{{ apt_packages }}"
+        name: "{{apt_packages}}"
     - name: admin no sudo password
+      become: yes
       lineinfile:
         path: /etc/sudoers
         state: present
         line: '%adm ALL=(ALL) NOPASSWD: ALL'
         validate: '/usr/sbin/visudo -cf %s'
     - name: add user to groups
+      become: yes
       user:
-        name: '{{ user }}'
+        name: '{{ansible_user_id}}'
         groups: "{{user_groups}}"
         append: yes
-    - name: Git global config
-      shell: "git config --global {{item}}"
-      with_items:
-        - 'user.email {{git_user_email}}'
-        - 'user.name {{git_user_name}}'
-        - 'push.default simple'
-    - name: bash ps1
-      copy: src=./.bash-git-ps1 dest=/home/{{user}}/.bash-git-ps1
-    - name: bash ps1
-      lineinfile: dest=/home/{{user}}/.bashrc line="source ~/.bash-git-ps1" state=present
-    - name: bash aliases
-      copy: src=./.bash-aliases dest=/home/{{user}}/.bash-aliases
-    - name: bash ps1
-      lineinfile: dest=/home/{{user}}/.bashrc line="source ~/.bash-aliases" state=present
-    - name: vimrc
-      copy: src=./.vimrc dest=/home/{{user}}/.vimrc
+    - name: gitconfig
+      copy: src=./gitconfig dest=/home/{{ansible_user_id}}/.gitconfig
+    - name: bash ps1 file
+      copy: src=./bash-git-ps1 dest=/home/{{ansible_user_id}}/.bash-git-ps1
+    - name: bash ps1 reference
+      lineinfile: dest=/home/{{ansible_user_id}}/.bashrc line="source ~/.bash-git-ps1" state=present
+    - name: bash aliases file
+      copy: src=./bash-aliases dest=/home/{{ansible_user_id}}/.bash-aliases
+    - name: bash ps1 reference
+      lineinfile: dest=/home/{{ansible_user_id}}/.bashrc line="source ~/.bash-aliases" state=present
+    - name: vimrc 
+      copy: src=./vimrc dest=/home/{{ansible_user_id}}/.vimrc
 
   roles:
-          #- geerlingguy.docker
-          #- geerlingguy.php
-          #- geerlingguy.php-xdebug
+    - jaredhocutt.jetbrains_toolbox

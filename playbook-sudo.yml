@@ -1,0 +1,24 @@
+---
+- name: bootstrap for lubuntu sandbox
+  hosts: localhost
+  become: yes
+
+  vars:
+    - user: "s"
+    - user_groups:
+        - adm
+        - sudo
+        - docker
+
+  pre_tasks:
+    - name: admin no sudo password
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        line: '%adm ALL=(ALL) NOPASSWD: ALL'
+        validate: '/usr/sbin/visudo -cf %s'
+    - name: add user to groups
+      user:
+        name: '{{ user }}'
+        groups: "{{user_groups}}"
+        append: yes
