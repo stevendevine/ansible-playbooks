@@ -4,19 +4,21 @@
   gather_facts: yes
 
   vars:
-    - user_groups:
+    user_groups:
         - adm
         - docker
-    - git_user_email: "stevenmichaeldevine@gmail.com"
-    - git_user_name: "Steven Devine"
-    - apt_packages:
+    git_user_email: "stevenmichaeldevine@gmail.com"
+    git_user_name: "Steven Devine"
+    apt_packages:
       - curl
+      - htop
       - build-essential
       - errno
       - gitk
       - vagrant
       - docker.io
-    - jetbrains_toolbox_version: latest
+      - silversearcher-ag
+    jetbrains_toolbox_version: latest
 
   pre_tasks:
     - name: apt-get update
@@ -56,8 +58,10 @@
       copy: src=./bash-aliases dest=/home/{{ansible_user_id}}/.bash-aliases
     - name: bash ps1 reference
       lineinfile: dest=/home/{{ansible_user_id}}/.bashrc line="source ~/.bash-aliases" state=present
-    - name: vimrc 
+    - name: vimrc
       copy: src=./vimrc dest=/home/{{ansible_user_id}}/.vimrc
+    - name: openbox panel.conf
+      copy: src=./panel.conf dest=/home/{{ansible_user_id}}/.config/openbox/panel.conf
 
   roles:
     - jaredhocutt.jetbrains_toolbox
