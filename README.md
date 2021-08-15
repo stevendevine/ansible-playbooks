@@ -1,3 +1,4 @@
+- sudo sysctl dev.i915.perf_stream_paranoid=0
 - dns encrypted
 - sudo without password
 - setup openbox shortcuts
