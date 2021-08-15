@@ -49,19 +49,41 @@
         groups: "{{user_groups}}"
         append: yes
     - name: gitconfig
-      copy: src=./gitconfig dest=/home/{{ansible_user_id}}/.gitconfig
+      ansible.builtin.copy:
+        src: ./gitconfig
+        dest: /home/{{ansible_user_id}}/.gitconfig
     - name: bash ps1 file
-      copy: src=./bash-git-ps1 dest=/home/{{ansible_user_id}}/.bash-git-ps1
+      ansible.builtin.copy:
+        src: ./bash-git-ps1
+        dest: /home/{{ansible_user_id}}/.bash-git-ps1
     - name: bash ps1 reference
-      lineinfile: dest=/home/{{ansible_user_id}}/.bashrc line="source ~/.bash-git-ps1" state=present
+      ansible.builtin.lineinfile:
+        dest: /home/{{ansible_user_id}}/.bashrc
+        line: "source ~/.bash-git-ps1"
+        state: present
     - name: bash aliases file
-      copy: src=./bash-aliases dest=/home/{{ansible_user_id}}/.bash-aliases
+      ansible.builtin.copy:
+        src: ./bash-aliases
+        dest: /home/{{ansible_user_id}}/.bash-aliases
     - name: bash ps1 reference
-      lineinfile: dest=/home/{{ansible_user_id}}/.bashrc line="source ~/.bash-aliases" state=present
+      ansible.builtin.lineinfile:
+        dest: /home/{{ansible_user_id}}/.bashrc
+        line: "source ~/.bash-aliases"
+        state: present
     - name: vimrc
-      copy: src=./vimrc dest=/home/{{ansible_user_id}}/.vimrc
+      ansible.builtin.copy:
+        src: ./vimrc
+        dest: /home/{{ansible_user_id}}/.vimrc
     - name: openbox panel.conf
-      copy: src=./panel.conf dest=/home/{{ansible_user_id}}/.config/openbox/panel.conf
+      ansible.builtin.copy:
+        src: ./panel.conf
+        dest: /home/{{ansible_user_id}}/.config/openbox/panel.conf
+    - name: lxqt-notification-send
+      ansible.builtin.copy:
+        src: ./lxqt-notification-send
+        dest: /home/{{ansible_user_id}}/.local/bin/lxqt-notification-send
+        mode: u+rwx,g+r,o+r
+
 
   roles:
     - jaredhocutt.jetbrains_toolbox
