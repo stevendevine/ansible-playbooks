@@ -4,11 +4,6 @@
   gather_facts: yes
 
   vars:
-    user_groups:
-        - adm
-        - docker
-    git_user_email: "stevenmichaeldevine@gmail.com"
-    git_user_name: "Steven Devine"
     apt_packages:
       - curl
       - htop
@@ -18,6 +13,8 @@
       - vagrant
       - docker.io
       - silversearcher-ag
+    git_user_email: "stevenmichaeldevine@gmail.com"
+    git_user_name: "Steven Devine"
     jetbrains_toolbox_version: latest
 
   pre_tasks:
@@ -35,19 +32,6 @@
       become: yes
       apt:
         name: "{{apt_packages}}"
-    - name: admin no sudo password
-      become: yes
-      lineinfile:
-        path: /etc/sudoers
-        state: present
-        line: '%adm ALL=(ALL) NOPASSWD: ALL'
-        validate: '/usr/sbin/visudo -cf %s'
-    - name: add user to groups
-      become: yes
-      user:
-        name: '{{ansible_user_id}}'
-        groups: "{{user_groups}}"
-        append: yes
     - name: gitconfig
       ansible.builtin.copy:
         src: ./gitconfig

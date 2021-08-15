@@ -22,3 +22,4 @@
         name: '{{ user }}'
         groups: "{{user_groups}}"
         append: yes
+

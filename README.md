@@ -8,6 +8,7 @@
 - htop config
 - terminal config
 - shell autocompletes
+- ~/.local/bin to PATH
 
 languages
 - elixir
