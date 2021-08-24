@@ -10,6 +10,10 @@
 - terminal config
 - shell autocompletes
 - ~/.local/bin to PATH
+- create ~/.local/bin
+- add ansible roles as git submodules instead of roles
+- refactor run script to run sudo playbook if user not in adm group
+
 
 languages
 - elixir
